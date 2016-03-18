@@ -1,8 +1,10 @@
 /* eslint-env mocha */
 /* eslint-disable react/no-multi-comp, react/prefer-es6-class, react/prefer-stateless-function */
-import React from 'react/addons'
+import React from 'react'
+import chai from 'chai'
 
-const { TestUtils } = React.addons
+chai.use(require('../src/index').default)
+
 const { expect } = chai
 
 const Super = React.createClass({
@@ -17,11 +19,6 @@ const Sub = React.createClass({
 })
 
 describe('.have.component(Component)', () => {
-  it('should find find given component in rendered react component', () => {
-    const component = TestUtils.renderIntoDocument(<div><Super /></div>)
-    expect(component).to.have.component(Super)
-  })
-
   it('should find find given component in div component', () => {
     expect(<div><Super /></div>).to.have.component(Super)
   })
